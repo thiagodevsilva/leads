@@ -34,6 +34,12 @@
                     <ul class="navbar-nav" style="margin-right: 50px;">                        
                         @if (Auth::check())
                             <li class="nav-item">
+                                <a href="/" class="nav-link">Contato</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/app" class="nav-link">Home</a>
+                            </li>
+                            <li class="nav-item">
                                 <a href="{{ route('logout') }}" class="nav-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Sair</a>
                             </li>
                             

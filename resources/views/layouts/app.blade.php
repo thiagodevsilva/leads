@@ -4,7 +4,7 @@
 
 @section('content')  
     
-    <div class="container">
+    <div>
         <div class="row mt-2">
             @php
             $name = explode(' ', trim(Auth::user()->name));
@@ -13,13 +13,15 @@
         <span>Olá, <span style="font-size: 1.25em;">{{ $first_name }}!</span></span>
         </div>
         <div>
-            <div class="p-5">
+            <div class="mx-5">
                 <table class="table table-striped table-hover">
                     <thead>
-                        <tr class="row">
+                        <tr class="row" style="font-size: 0.9em; text-align: center;">
                             <th class="col">Nome</th>
-                            <th class="col">Email</th>
-                            <th class="col">Telefone</th>
+                            <th class="col d-none d-lg-block">Email</th>
+                            <th class="col d-none d-sm-block">Telefone</th>
+                            <th class="col d-none d-xl-block">Data/Hora</th>
+                            <th class="col">Contato realizado</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -32,8 +34,6 @@
             </div>
         </div>
     </div>
-
-
 
     <style>
         td {

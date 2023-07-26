@@ -91,7 +91,7 @@
                 <div class="jumbotron text-center" style="color: #315382">
                     <h1 class="display-5">Cadastre-se agora</h1>
                     <hr class="my-2 mx-5">
-                    <p>Em breve um de nossos corretores entrará em contato!</p>
+                    <p>Após envio do formulário um corretor entrará em contato em instantes!</p>
                   </div>
             </div>
         </div>
