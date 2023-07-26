@@ -21,17 +21,17 @@
                 </div>
 
                 <div class="row mt-2 p-3" style="background: #315382; border-radius: 7px; color: #fff;">
-                    <div class="col-sm-8">
+                    <div class="col-md-6">
                         <form action="{{ route('app') }}" method="GET" class="d-inline">
                             <input type="text" name="search" placeholder="Search" value="{{ request()->input('search') }}">
                             <input type="submit" value="Search" class="btn btn-sm btn-primary">
                             <a href="{{ route('app') }}" class="btn btn-sm btn-danger" title="Limpar filtro">&times;</a>
                         </form>
                     </div>
-                    <div class="col-sm-4 text-end">  
-                        <input type="checkbox" id="showRecentFirstCheckbox" onchange="toggleRecentFirst(this)"{{ request()->input('recent_first') === 'true' ? 'checked' : '' }}> Recentes primeiro |                       
-                        <input type="checkbox" id="showOnlyPendingCheckbox" onchange="togglePendingLeads(this)"{{ request()->input('show_only_pending') === 'true' ? 'checked' : '' }}> Apenas pendentes    
-                    </div>
+                    <div class="col-md-6 text-end">  
+                        <span><input type="checkbox" id="showRecentFirstCheckbox" onchange="toggleRecentFirst(this)"{{ request()->input('recent_first') === 'true' ? 'checked' : '' }}> Recentes primeiro | </span>                      
+                        <span><input type="checkbox" id="showOnlyPendingCheckbox" onchange="togglePendingLeads(this)"{{ request()->input('show_only_pending') === 'true' ? 'checked' : '' }}> Apenas pendentes    
+                        </div></span>
                 </div>
 
                 <table class="table table-striped table-hover mt-3">
@@ -48,9 +48,9 @@
                         @component('components.modal', ['leads' => $leads])
                         @endcomponent
 
-                    </tbody>
-                    
+                    </tbody>                    
                 </table>
+                {{ $leads->links('pagination::bootstrap-4', ['class' => 'custom-pagination']) }}
             </div>
         </div>
     </div>

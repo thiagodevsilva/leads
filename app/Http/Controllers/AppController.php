@@ -28,7 +28,7 @@ class AppController extends Controller
             });
         }
     
-        $leads = $query->get();
+        $leads = $query->paginate(10);
     
         return view('layouts.app', compact('leads'));
     }    
