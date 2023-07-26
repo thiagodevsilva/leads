@@ -12,6 +12,8 @@ ___
 - [Testes](#testes)
 - [Como contribuir](#como-contribuir)
 - [Contato](#contato)
+- [Problemas](#problemas)
+
 
 ___
 
@@ -74,4 +76,9 @@ ___
 # Contato 📞
 
 Linkedin: https://www.linkedin.com/in/thiago-silva-a88a61219/
+___
+
+# Problemas? ⚙️
+
+Tente executar os comandos `composer install` e `npm install`, parar o servidor e rodar novamente (`php artisan serve`).
 
