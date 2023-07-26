@@ -47,6 +47,9 @@
 </tbody>
 
 <script>
+    /*
+    *   Chama a rota responsavel por marcar um lead como contato realizado ou contato não realizado
+    */
     function markAsContacted(event, id, checkbox) {        
         fetch('/lead/contacted/' + id, {
             method: 'POST',

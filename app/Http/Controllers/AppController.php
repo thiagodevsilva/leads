@@ -6,8 +6,14 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Leads;
 
+/**
+ * Controla as ações de usuarios autenticados
+ */
 class AppController extends Controller
 {
+    /**
+     * Carrega os leads por usuario e seus recursos
+     */
     public function index(Request $request)
     {
         $query = Auth::user()->leads()->with(['address', 'user']);
@@ -33,6 +39,9 @@ class AppController extends Controller
         return view('layouts.app', compact('leads'));
     }    
 
+    /**
+     * Salva no banco de dados que o contato foi realizado e guarda o momento também
+     */
     public function markAsContacted($id)
     {
         $lead = Leads::findOrFail($id);

@@ -5,7 +5,6 @@
 @section('content')  
     
     <div>
-
         <div>
             <div class="mx-5">
                 <div class="row mt-2">
@@ -20,23 +19,27 @@
                     <span class="display-6">Tabela de Leads</span><span>({{ $leads->count() }})</span>
                 </div>
 
-                <div class="row mt-2 p-3" style="background: #315382; border-radius: 7px; color: #fff;">
-                    <div class="col-md-6">
+                <div class="row mt-2 p-3 filters">
+                    <div class="col-md-4">
                         <form action="{{ route('app') }}" method="GET" class="d-inline">
                             <input type="text" name="search" placeholder="Search" value="{{ request()->input('search') }}">
                             <input type="submit" value="Search" class="btn btn-sm btn-primary">
                             <a href="{{ route('app') }}" class="btn btn-sm btn-danger" title="Limpar filtro">&times;</a>
                         </form>
                     </div>
-                    <div class="col-md-6 text-end">  
-                        <span><input type="checkbox" id="showRecentFirstCheckbox" onchange="toggleRecentFirst(this)"{{ request()->input('recent_first') === 'true' ? 'checked' : '' }}> Recentes primeiro | </span>                      
-                        <span><input type="checkbox" id="showOnlyPendingCheckbox" onchange="togglePendingLeads(this)"{{ request()->input('show_only_pending') === 'true' ? 'checked' : '' }}> Apenas pendentes    
-                        </div></span>
+                    <div class="col-md-8 text-end">  
+                        <span>
+                            <input type="checkbox" id="showRecentFirstCheckbox" onchange="toggleRecentFirst(this)"{{ request()->input('recent_first') === 'true' ? 'checked' : '' }}> Recentes primeiro | 
+                        </span>                      
+                        <span>
+                            <input type="checkbox" id="showOnlyPendingCheckbox" onchange="togglePendingLeads(this)"{{ request()->input('show_only_pending') === 'true' ? 'checked' : '' }}> Apenas pendentes    
+                        </span>
+                    </div>
                 </div>
 
                 <table class="table table-striped table-hover mt-3">
                     <thead>
-                        <tr class="row" style="font-size: 0.9em; text-align: center;">
+                        <tr class="row">
                             <th class="col">Nome</th>
                             <th class="col d-none d-lg-block">Email</th>
                             <th class="col d-none d-sm-block">Telefone</th>
@@ -66,9 +69,21 @@
         .table-striped tbody tr:nth-of-type(odd) {
             background-color: #31538215;
         }
+        .filters {
+            background: #315382;
+            border-radius: 7px;
+            color: #fff;
+        }
+        thead tr {
+            font-size: 0.9em;
+            text-align: center;
+        }
     </style>
 
     <script>
+        /*
+        *   Função para ordenar os leads
+        */
         function toggleRecentFirst(checkbox) {
             const url = new URL(window.location);
             const searchInput = document.querySelector('input[name="search"]');
@@ -95,6 +110,9 @@
             window.location.href = url;
         }
 
+        /*
+        *   Função para ocultar/exibir contatos já realizados
+        */
         function togglePendingLeads(checkbox) {
             const url = new URL(window.location);
             const searchInput = document.querySelector('input[name="search"]');
