@@ -1,0 +1,58 @@
+/* GENERAL */
+
+* {
+    font-family: 'Roboto';
+}
+
+body {
+    min-height: 100vh;
+    padding-bottom: 100px;
+    position: relative;
+}
+.navbar {
+    padding: 0;
+    margin: 0;
+}
+/* END GENERAL */
+
+/* NAVBAR */
+
+#navbar-img {
+    width: 40px;
+}
+
+#navbar {
+    justify-content: end;
+    background-color: #315382;
+    padding: 5px 0;
+    color: #FFF;
+}
+
+#navbar a {
+    font-size: 14px;
+    color: #FFF;
+}
+
+#navbar a:hover {
+    font-size: 14px;
+    font-weight: bold;
+    color: #3cbeff;
+}
+/* END NAVBAR */
+
+/* footer */
+
+footer {
+    text-align: center;
+    background-color: #315382;
+    color: #FFF;
+    padding: 20px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+footer p {
+    margin-bottom: 0;
+}
+/* END footer */
