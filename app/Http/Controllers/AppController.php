@@ -16,8 +16,12 @@ class AppController extends Controller
      */
     public function index(Request $request)
     {
-        $query = Auth::user()->leads()->with(['address', 'user']);
-
+        if (Auth::user()->isAdmin()) {
+            $query = Leads::with(['address', 'user']);
+        } else {
+            $query = Auth::user()->leads()->with(['address', 'user']);
+        }
+    
         if ($request->input('show_only_pending') === 'true') {
             $query->where('contacted_pending', true);
         }
@@ -30,14 +34,21 @@ class AppController extends Controller
             $search = $request->input('search');
             $query->where(function($q) use ($search) {
                 $q->where('name', 'LIKE', '%' . $search . '%')
-                  ->orWhere('email', 'LIKE', '%' . $search . '%');
+                    ->orWhere('email', 'LIKE', '%' . $search . '%');
             });
         }
     
         $leads = $query->paginate(10);
     
-        return view('layouts.app', compact('leads'));
-    }    
+        $leadsByUser = Leads::selectRaw('user_id, SUBSTRING_INDEX(users.name, " ", 1) as name, COUNT(*) as count')
+            ->join('users', 'users.id', '=', 'leads.user_id')
+            ->where('contacted_pending', true)
+            ->groupBy('user_id', 'name') // note que mudamos 'users.name' para 'name'
+            ->get()
+            ->toArray();
+    
+        return view('layouts.app', compact('leads', 'leadsByUser'));
+    }     
 
     /**
      * Salva no banco de dados que o contato foi realizado e guarda o momento também

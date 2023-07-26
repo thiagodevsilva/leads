@@ -10,7 +10,7 @@
     </div>
     @endif
 
-    <form method="POST" action="{{ route('login') }}" class="w-100 p-3" style="margin: 50px auto; max-width: 400px; border-radius: 7px; background: #315382">
+    <form method="POST" action="{{ route('login') }}" class="w-100 p-3 form-login">
         @csrf
 
         <!-- Email Address -->
@@ -43,16 +43,19 @@
             <label class="form-check-label text-light" for="remember">{{ __('Remember me') }}</label>
         </div>
 
-        <div class="form-group">
-            @if (Route::has('password.request'))
-                <a class="btn btn-link text-warning" href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
-                </a>
-            @endif
-
+        <div class="form-group text-end">
             <button type="submit" class="btn btn-primary">
                 {{ __('Log in') }}
             </button>
         </div>
     </form>
+
+    <style>
+        .form-login{
+            margin: 50px auto;
+            max-width: 400px;
+            border-radius: 7px;
+            background: #315382;
+        }
+    </style>
 @endsection

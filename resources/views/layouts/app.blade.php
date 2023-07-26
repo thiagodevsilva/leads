@@ -15,8 +15,22 @@
                     <span>Olá, <span style="font-size: 1.25em;">{{ $first_name }}!</span></span>
                 </div>
 
+                @if(Auth::user()->isAdmin())
+                    <div class="row">
+                        <div class="mt-2">
+                            <span class="display-6">Dashboard</span>                            
+                        </div>
+                        <div class="text-center d-flex justify-content-center">                            
+                            <span>Leads com contatos não realizados.</span>
+                            <div class="box-chart">
+                                <canvas id="leadsChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                @endif
+
                 <div class="mt-2">
-                    <span class="display-6">Tabela de Leads</span><span>({{ $leads->count() }})</span>
+                    <span class="display-6">Listagem de Leads</span><span>({{ $leads->count() }})</span>
                 </div>
 
                 <div class="row mt-2 p-3 filters">
@@ -78,6 +92,10 @@
             font-size: 0.9em;
             text-align: center;
         }
+        .box-chart {
+            width: 100%;
+            max-width: 250px;
+        }
     </style>
 
     <script>
@@ -138,6 +156,33 @@
 
             window.location.href = url;
         }
+
+        /*
+        *   Comportamento do gráfico do dashboard
+        */
+        var ctx = document.getElementById('leadsChart').getContext('2d');
+
+        console.log({!! json_encode($leadsByUser) !!});
+        var chart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: {!! json_encode(array_column($leadsByUser, 'name')) !!},
+                datasets: [{
+                    label: 'Leads: ',
+                    data: {!! json_encode(array_column($leadsByUser, 'count')) !!},
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            }
+        });
+
 
     </script>
 

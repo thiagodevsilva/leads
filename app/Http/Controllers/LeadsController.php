@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use App\Models\Leads;
@@ -67,7 +66,7 @@ class LeadsController extends Controller
         $address = Address::create($addressData);
         
         $lastLead = Leads::orderBy('created_at', 'desc')->first();
-        $user_id = ($lastLead && $lastLead->user_id == 1) ? 2 : 1;
+        $user_id = ($lastLead && $lastLead->user_id == 2) ? 3 : 2;
     
         // Agora, crie um novo lead com o ID do endereço
         $leadData = [
