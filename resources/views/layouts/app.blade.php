@@ -1,36 +1,51 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+@extends('home.main')
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+@section('title', 'Home')
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-
-        <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
-    </head>
-    <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100">
-            @include('layouts.navigation')
-
-            <!-- Page Heading -->
-            @if (isset($header))
-                <header class="bg-white shadow">
-                    <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                        {{ $header }}
-                    </div>
-                </header>
-            @endif
-
-            <!-- Page Content -->
-            <main>
-                {{ $slot }}
-            </main>
+@section('content')  
+    
+    <div class="container">
+        <div class="row mt-2">
+            @php
+            $name = explode(' ', trim(Auth::user()->name));
+            $first_name = $name[0];
+        @endphp
+        <span>Olá, <span style="font-size: 1.25em;">{{ $first_name }}!</span></span>
         </div>
-    </body>
-</html>
+        <div>
+            <div class="p-5">
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr class="row">
+                            <th class="col">Nome</th>
+                            <th class="col">Email</th>
+                            <th class="col">Telefone</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @component('components.modal', ['leads' => $leads])
+                        @endcomponent
+
+                    </tbody>
+                    
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+
+    <style>
+        td {
+            cursor: pointer;
+        }
+        .table-hover tbody tr:hover {
+            background-color: #31538250 !important;
+            color: #FFF;
+        }
+        .table-striped tbody tr:nth-of-type(odd) {
+            background-color: #31538215;
+        }
+    </style>
+
+@endsection
