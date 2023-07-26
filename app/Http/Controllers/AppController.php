@@ -8,11 +8,30 @@ use App\Models\Leads;
 
 class AppController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $leads = Auth::user()->leads()->with(['address', 'user'])->get();
+        $query = Auth::user()->leads()->with(['address', 'user']);
+
+        if ($request->input('show_only_pending') === 'true') {
+            $query->where('contacted_pending', true);
+        }
+    
+        if ($request->input('recent_first') === 'true') {
+            $query->orderBy('created_at', 'desc');
+        }
+    
+        if ($request->input('search')) {
+            $search = $request->input('search');
+            $query->where(function($q) use ($search) {
+                $q->where('name', 'LIKE', '%' . $search . '%')
+                  ->orWhere('email', 'LIKE', '%' . $search . '%');
+            });
+        }
+    
+        $leads = $query->get();
+    
         return view('layouts.app', compact('leads'));
-    }
+    }    
 
     public function markAsContacted($id)
     {
