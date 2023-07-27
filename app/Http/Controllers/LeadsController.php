@@ -8,6 +8,9 @@ use App\Models\Address;
 
 class LeadsController extends Controller
 {
+    /**
+     * Responsável por guardar os dados do formulario de leads no banco
+     */
     public function store(Request $request)
     {
         // regras de validação
@@ -50,7 +53,6 @@ class LeadsController extends Controller
                         ->withInput();
         }
 
-        // Pegue os campos do request primeiro
         $addressData = [
             'cep' => $request->cep,
             'rua' => $request->rua,
@@ -59,16 +61,13 @@ class LeadsController extends Controller
             'bairro' => $request->bairro,
             'cidade' => $request->cidade,
             'estado' => $request->estado,
-            // adiciona mais campos conforme necessário
         ];
     
-        // Crie um novo endereço e obtenha o ID
         $address = Address::create($addressData);
         
         $lastLead = Leads::orderBy('created_at', 'desc')->first();
         $user_id = ($lastLead && $lastLead->user_id == 2) ? 3 : 2;
     
-        // Agora, crie um novo lead com o ID do endereço
         $leadData = [
             'name' => $request->nome,
             'telefone' => $request->telefone,
