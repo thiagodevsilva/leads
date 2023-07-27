@@ -46,7 +46,9 @@ ___
 # Executando o projeto 🚀
 
 Rodar os comandos na seguinte sequencia:
+`composer install` e `npm install`
 
+`php artisan key:generate` => Gera chave de criptografia
 `php artisan migrate` => Cria as tabelas
 `php artisan db:seed --class=UsersTableSeeder` => Cria o usuario Admin e os usuários padrões
 
