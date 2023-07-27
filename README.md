@@ -46,14 +46,16 @@ ___
 # Executando o projeto 🚀
 
 Rodar os comandos na seguinte sequencia:
-`composer install` e `npm install`
 
-`php artisan key:generate` => Gera chave de criptografia
-`php artisan migrate` => Cria as tabelas
-`php artisan db:seed --class=UsersTableSeeder` => Cria o usuario Admin e os usuários padrões
+- `composer install` e `npm install`
+
+- `php artisan key:generate` => Gera chave de criptografia
+- `php artisan migrate` => Cria as tabelas
+- `php artisan db:seed --class=UsersTableSeeder` => Cria o usuario Admin e os usuários padrões
 
 Tudo certo até aqui?
-Execute o comando `php artisan serve` para subir o laravel e poder acessar a página.
+
+-> Execute o comando `php artisan serve` para subir o laravel e poder acessar a página.
 
 ___
 
