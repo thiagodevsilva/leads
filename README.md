@@ -62,11 +62,13 @@ ___
 # Testes ⚙️
 
 Para logar com o usuario Admin:
-Login: admin@lds.com / Senha: 12345678
+
+- Login: admin@lds.com / Senha: 12345678
 
 Para logar com os usuarios padrão:
-Login: maria@lds.com / Senha: 12345678
-Login: joao@lds.com / Senha: 12345678
+
+- Login: maria@lds.com / Senha: 12345678
+- Login: joao@lds.com / Senha: 12345678
 
 ___
 
